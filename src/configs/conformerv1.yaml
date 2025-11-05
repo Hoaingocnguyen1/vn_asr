@@ -1,0 +1,56 @@
+model:
+  features_extractor_params:
+    global_cmvn_path: null
+  num_mel_bins: 80
+  subsampling_channel: 256
+  subsampling_dropout: 0.1
+  type_encoder: 'conformer'
+  type_decoder: 'transformer'
+  sinusoidal_pos_enc_style: add
+  position_dropout: 0.1
+  encoder_params:
+    d_model: 256
+    n_layers: 8
+    nhead: 4
+    dropout: 0.1
+    conv_kernel_size: 3
+    conv_mult: 2
+    ffn_mult: 2
+    pre_norm: True
+  ctc_weight: 0.5
+  ctc_linear_dropout: 0.05
+  decoder_params:
+    n_layers: 4
+    d_model: 256
+    n_head: 4
+    dropout: 0.1
+    pre_norm: True
+  label_smoothing_weight: 0.1
+  label_smoothing_normalize_length: true
+
+dataset:
+  train_filepath: data/train.txt
+  valid_filepath: data/valid.txt
+  bpe_model_path: data/bpe_2000/bpe.model
+  batch_size: 16
+  num_worker: 4
+
+train:
+  output_dir: exps/vivos/conformer
+  num_epoch: 50
+  warmup_steps: 15000
+  lr: 0.001
+  weight_decay: 0
+  acc_steps: 2
+  pretrained_path: null # restore checkpoint for continue training
+  wandb_config:
+    project: vivos
+    tag: conformer
+
+decode:
+  beamsize: 1
+  kenlm_path: null
+  word_vocab_path: data/word_vocab.txt
+  kenlm_alpha: 0.5
+  kenlm_beta: 1.5
+

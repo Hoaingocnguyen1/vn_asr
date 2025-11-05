@@ -1,0 +1,14 @@
+checkpoint
+__pycache__
+*/__pycache__
+venv*
+exps*
+data/*
+models/*.binary
+*.txt
+*.pt
+*.arpa
+*.gz
+*.bin
+*.pkl
+*.csv
