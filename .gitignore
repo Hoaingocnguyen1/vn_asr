@@ -5,7 +5,6 @@ venv*
 exps*
 data/*
 models/*.binary
-*.txt
 *.pt
 *.arpa
 *.gz
